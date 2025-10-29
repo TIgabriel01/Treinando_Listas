@@ -10,18 +10,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Quantos Funcionarios serao registrados?: ");
         int n = sc.nextInt();
-        int id = 0;
-        String nome ;
-        double salario;
-
+       
         List<Funcionario> f = new ArrayList<>();
 
         for (int i = 1; i <= n; i++) {
+            int id = 0;
+            String nome ;
+            double salario;
+
             System.out.println();
             System.out.println("============ " + i + " Funcionario: " + "=============");
             System.out.print("Digite o Id: ");
@@ -35,9 +37,9 @@ public class Main {
                 }
             }
             if (existe){
-                    System.out.println("---------------------------");
-                    System.out.println("|Erro. Este Id ja existe!!|");
-                    System.out.println("---------------------------");
+                    System.out.println("-----------------------------------------------");
+                    System.out.println("|   Erro. O ID " + getId + " ja existe! tente outro.    |");
+                    System.out.println("-----------------------------------------------");
                     i--;
                     continue;
             }
@@ -68,9 +70,9 @@ public class Main {
                 }
             }
             if (fu == null) {
-                System.out.println("---------------------------");
-                System.out.println("|Erro. Este Id ja existe!!|");
-                System.out.println("---------------------------");
+                System.out.println("--------------------------------------------------------");
+                System.out.println("|   Erro. O ID " + idAumentaSal + " não existe! tente outro.            |");
+                System.out.println("--------------------------------------------------------");
             }
         }
         System.out.println();
