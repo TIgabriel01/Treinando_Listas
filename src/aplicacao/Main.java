@@ -18,28 +18,35 @@ public class Main {
         String nome ;
         double salario;
 
-        List<Funcionario> f = new ArrayList<>(); // testando dessa forma
+        List<Funcionario> f = new ArrayList<>();
 
         for (int i = 1; i <= n; i++) {
             System.out.println();
             System.out.println("============ " + i + " Funcionario: " + "=============");
             System.out.print("Digite o Id: ");
             int getId = sc.nextInt();
-            if (id == getId) {
-                System.out.println("---------------------------");
-                System.out.println("|Erro. Este Id ja existe!!|");
-                System.out.println("---------------------------");
-                i--;
-                continue;
-            } else {
-                id = getId;
+
+            boolean existe = false;
+            for (Funcionario func : f){
+                if (func.getId() == getId){
+                    existe = true;
+                    break;
+                }
             }
+            if (existe){
+                    System.out.println("---------------------------");
+                    System.out.println("|Erro. Este Id ja existe!!|");
+                    System.out.println("---------------------------");
+                    i--;
+                    continue;
+            }
+
             System.out.print("Digite o nome do Colaborador: ");
             sc.nextLine();
             nome = sc.nextLine();
             System.out.print("Digite o valor de seu salario: ");
             salario = sc.nextDouble();
-            Funcionario fun = new Funcionario(nome, id, salario);
+            Funcionario fun = new Funcionario(nome, getId, salario);
             f.add(fun);
         }
 
@@ -49,7 +56,7 @@ public class Main {
         int idAumentaSal = sc.nextInt();
         int porc;
 
-       /* for(int i=0; i<f.size(); i++) {
+       for(int i=0; i<f.size(); i++) {
             if (f.contains(idAumentaSal)) {
                 System.out.print("Qual a porcentagem de aumento?: ");
                 porc = sc.nextInt();
@@ -60,7 +67,7 @@ public class Main {
                 System.out.println("---------------------------");
                 i--;
             }
-        }*/
+        }
 
 
         for (Funcionario func : f){
