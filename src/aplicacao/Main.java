@@ -1,6 +1,7 @@
 package aplicacao;
 
 import entidades.Funcionario;
+import jdk.nashorn.internal.ir.FunctionCall;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,37 +42,42 @@ public class Main {
                     continue;
             }
 
-            System.out.print("Digite o nome do Colaborador: ");
+            System.out.print("nome do Colaborador: ");
             sc.nextLine();
             nome = sc.nextLine();
-            System.out.print("Digite o valor de seu salario: ");
+            System.out.print("valor de seu salario: ");
             salario = sc.nextDouble();
             Funcionario fun = new Funcionario(nome, getId, salario);
             f.add(fun);
         }
 
-        Funcionario fu = new Funcionario();
+        Funcionario fu = null;
 
-        System.out.print("Deseja aumentar o salario de qual colaborador?: ");
-        int idAumentaSal = sc.nextInt();
-        int porc;
+        while (fu == null) {
+            System.out.println();
+            System.out.print("Deseja aumentar o salario de qual colaborador?: ");
+            int idAumentaSal = sc.nextInt();
 
-       for(int i=0; i<f.size(); i++) {
-            if (f.contains(idAumentaSal)) {
-                System.out.print("Qual a porcentagem de aumento?: ");
-                porc = sc.nextInt();
-                fu.aumentarSalario(porc);
-            } else {
+            for (Funcionario func : f) {
+                if (func.getId() == idAumentaSal) {
+                    System.out.print("Qual a porcentagem de aumento?: ");
+                    int porc = sc.nextInt();
+                    func.aumentarSalario(porc);
+                    fu = func;
+                    break;
+                }
+            }
+            if (fu == null) {
                 System.out.println("---------------------------");
                 System.out.println("|Erro. Este Id ja existe!!|");
                 System.out.println("---------------------------");
-                i--;
             }
         }
-
-
+        System.out.println();
+        System.out.println("-----------------------------------");
+        System.out.println("Lista de funcionarios:");
         for (Funcionario func : f){
-            System.out.println(func.getId()+ ", " + func.getNome()+ ", " + func.getSalario());
+            System.out.println("Id= " + func.getId()+ ", Nome= " + func.getNome()+ ", Salario= " + func.getSalario());
         }
 
     sc.close();

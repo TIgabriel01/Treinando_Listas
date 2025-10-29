@@ -8,8 +8,7 @@ public class Funcionario {
     private double salario;
 
     public void aumentarSalario(double valor) {
-      double porcentagem = valor * salario;
-      salario += salario / 100;
+      salario += salario * (valor / 100);
     }
 
     public Funcionario() {
